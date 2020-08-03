@@ -1,4 +1,4 @@
-import {useState, useDimension} from 'react'
+import {useState, useDimension, useEffect} from 'react'
 
 export const useAnimatedScale = (scGap = 0.02, delay = 20) {
     const [scale, setScale] = useState(0)
@@ -20,5 +20,25 @@ export const useAnimatedScale = (scGap = 0.02, delay = 20) {
                 }, delay)
             }
         }
+    }
+}
+
+export const useDimension = () => {
+    const [w, setW] = useState(window.innerWidth)
+    const [h, setH] = useState(window.innerHeight)
+    useEffect(() => {
+        window.onresize = () => {
+            setW(window.innerWidth)
+            setH(window.innerHeight)
+        }
+        return () => {
+            window.onresize = () => {
+                
+            }
+        }
+    })
+    return {
+        w, 
+        h, 
     }
 }
