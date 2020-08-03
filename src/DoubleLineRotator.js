@@ -7,9 +7,10 @@ const Line = ({style}) => {
 }
 
 const DoubleLineRotator = ({scale, w, h, onClick}) => {
-    const {getParentStyle, getLineStyle} = useStyle(w, h, scale)
-    return <div onClick = {onClick} style = {getParentStyle()}>
+    const {getParentStyle, getLineStyle, getButtonStyle} = useStyle(w, h, scale)
+    return <div style = {getParentStyle()}>
         {[0, 1].map(i => <Line key = {`line_${i}`} style = {getLineStyle(i)}/>)}
+        <button onClick = {onClick} style = {getButtonStyle()}>Start</button>
     </div>
 }
 

@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {sinify, divideScale} from './utils'
 
-export const useAnimatedScale = (scGap = 0.02, delay = 20) {
+export const useAnimatedScale = (scGap = 0.02, delay = 20) => {
     const [scale, setScale] = useState(0)
     const [animated, setAnimated] = useState(false)
     return {
@@ -65,15 +65,20 @@ export const useStyle = (w, h, scale) => {
         },
 
         getLineStyle(i) {
-            const top = `${ -size + i * size}px`
-            const fx = w / 2 
+            const top = `${ -size + i * 2 * size}px`
+            const fx = w / 2 + size
             const ix = -size / 2
-            const x = ix + (fx - ix) * sf1 
+            const x = fx + (ix - fx) * sf1 
             const left = `${x * (1 - 2 * i)}px`
             const position = 'absolute'
             const width = `${size}px`
             const height = `${Math.min(w, h) / 60}px`
             return {position, left, top, width, height, background}
+        },
+
+        getButtonStyle() {
+            const opacity = 1 - sf1 
+            return {opacity}
         }
     }
 }
